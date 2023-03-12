@@ -1,0 +1,18 @@
+apiVersion: kappctrl.k14s.io/v1alpha1
+kind: App
+metadata:
+  name: kapp-controller-test
+spec:
+  fetch:
+  - git:
+      url: git@github.com:odinnordico/kapp-controller-private-test.git
+      secretRef:
+        name: ssh-key-secret
+      subPath: ns1
+  - git:
+      url: git@github.com:odinnordico/kapp-controller-private-test.git
+      secretRef:
+        name: ssh-key-secret
+      subPath: ns2
+  template:
+    - ytt: {}
