@@ -3,18 +3,21 @@ kind: App
 metadata:
   name: kapp-controller-test
 spec:
+  serviceAccountName: default
   fetch:
   - git:
       url: git@github.com:odinnordico/kapp-controller-private-test.git
       ref: origin/main
       secretRef:
         name: ssh-key-secret
-      subPath: ns1
+      subPath: cm
   - git:
       url: git@github.com:odinnordico/kapp-controller-private-test.git
       ref: origin/main
       secretRef:
         name: ssh-key-secret
-      subPath: ns2
+      subPath: secret
   template:
     - ytt: {}
+  deploy:
+  - kapp: {}
